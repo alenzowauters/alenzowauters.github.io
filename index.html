@@ -1,91 +1,81 @@
 <!DOCTYPE HTML>
 <html lang="fr">
 	<head>
-		<title>Alenzo Wauters | Portfolio SISR</title>
+		<title>Alenzo Wauters | Expert Cyber & SecOps</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		
 		<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 
 		<style>
-			/* Personnalisation Couleurs et Tailles */
-			h1, h2, h3, h4 { 
-				color: #18bfef !important; /* Bleu Cyber */
-				text-transform: uppercase;
-				letter-spacing: 2px;
+			/* Palette Vercel Cyber */
+			:root {
+				--bg-dark: #0a0a0a;
+				--accent-cyber: #00e5ff;
+				--text-main: #e2e8f0;
+				--card-bg: rgba(25, 25, 25, 0.8);
 			}
 
-			#intro h1 { font-size: 3rem !important; } 
-			#intro p { font-size: 1.1rem !important; }
-
-			#nav { background-color: #1a1a1a !important; }
-			
-			/* Bouton CV dans le menu */
-			.nav-cv {
-				background-color: rgba(24, 191, 239, 0.1);
-				border-radius: 4px;
-			}
-
-			/* Amélioration de la section Compétences */
-			#competences article {
-				border: 1px solid #e5e5e5;
-				padding: 2rem;
-				border-radius: 12px;
-				background: #ffffff;
-				transition: 0.3s;
-				text-align: center;
-				margin-bottom: 20px;
-			}
-
-			#competences article:hover {
-				border-color: #18bfef;
-				box-shadow: 0 8px 20px rgba(24, 191, 239, 0.15);
-				transform: translateY(-5px);
-			}
-			
-			/* Icônes dans les titres de compétences */
-			#competences article h2 i {
-				margin-right: 10px;
-				color: #18bfef; /* Couleur de l'icône */
-			}
-
-			header.major > p {
-				font-size: 1.1rem;
-				max-width: 800px;
-				margin: 0 auto 2rem auto;
-			}
-
-			/* Fix pour l'affichage mobile et espacement */
-			section { padding: 4rem 0 !important; }
-			.posts { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
-			.posts article { width: calc(50% - 20px) !important; }
-			
-			@media screen and (max-width: 736px) {
-				.posts article { width: 100% !important; }
-			}
-
-			/* Effet Glassmorphism pour les box et articles */
-			#competences article, .box {
-				background: rgba(255, 255, 255, 0.05) !important; /* Semi-transparent */
-				backdrop-filter: blur(8px); /* Flou */
-				border: 1px solid rgba(255, 255, 255, 0.1) !important;
-				box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-			}
-
-			/* Dégradé animé en arrière-plan (plus subtil que le Vercel original) */
 			body {
-				background: linear-gradient(-45deg, #f0f2f5, #e0e7ed, #d0dde5, #e0e7ed);
-				background-size: 400% 400%;
-				animation: gradient 15s ease infinite;
+				background-color: var(--bg-dark);
+				color: var(--text-main);
+				background-image: radial-gradient(circle at 50% 50%, #112240 0%, #0a192f 100%);
 			}
 
-			@keyframes gradient {
-				0% { background-position: 0% 50%; }
-				50% { background-position: 100% 50%; }
-				100% { background-position: 0% 50%; }
+			h1, h2, h3, h4 { 
+				color: var(--accent-cyber) !important;
+				text-transform: uppercase;
+				letter-spacing: 3px;
+				font-weight: 800;
 			}
+
+			#intro { background-color: transparent; }
+			#intro h1 { font-size: 4rem !important; text-shadow: 0 0 20px rgba(0, 229, 255, 0.5); }
+
+			#nav { background-color: rgba(10, 10, 10, 0.9) !important; backdrop-filter: blur(10px); }
+
+			/* Glassmorphism Cards */
+			.cyber-card {
+				background: var(--card-bg) !important;
+				border: 1px solid rgba(0, 229, 255, 0.1) !important;
+				border-radius: 15px !important;
+				padding: 2.5rem !important;
+				transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+				height: 100%;
+			}
+
+			.cyber-card:hover {
+				border-color: var(--accent-cyber) !important;
+				box-shadow: 0 0 30px rgba(0, 229, 255, 0.2);
+				transform: translateY(-10px);
+			}
+
+			/* Badge Style */
+			.badge {
+				background: rgba(0, 229, 255, 0.1);
+				color: var(--accent-cyber);
+				padding: 5px 12px;
+				border-radius: 20px;
+				font-size: 0.8rem;
+				border: 1px solid var(--accent-cyber);
+				margin-right: 5px;
+				display: inline-block;
+				margin-bottom: 10px;
+			}
+
+			/* Timeline for Gaston Berger */
+			.timeline {
+				border-left: 2px solid var(--accent-cyber);
+				padding-left: 20px;
+				margin-left: 10px;
+			}
+
+			#main > section { border-top: none; padding: 6rem 0 !important; }
+
+			.nav-cv { background-color: var(--accent-cyber) !important; border-radius: 5px; }
+			.nav-cv a { color: black !important; font-weight: bold !important; }
 		</style>
 	</head>
 	<body class="is-preload">
@@ -94,124 +84,140 @@
 
 			<div id="intro">
 				<h1>Alenzo Wauters</h1>
-				<p>Étudiant en BTS SIO Option SISR | Futur alternant en Cybersécurité & SecOps</p>
+				<p>Expert en devenir : Cybersécurité & SecOps<br />
+				Étudiant au <strong>Lycée Gaston Berger</strong> | Apprenti à la <strong>D.I.R NORD</strong></p>
 				<ul class="actions">
-					<li><a href="#nav" class="button icon solid solo fa-arrow-down scrolly">Entrer</a></li>
+					<li><a href="#nav" class="button icon solid solo fa-arrow-down scrolly">Entrer dans le terminal</a></li>
 				</ul>
 			</div>
 
 			<nav id="nav">
 				<ul class="links">
-					<li class="active"><a href="#main">À propos</a></li>
-					<li><a href="#formation">Formation</a></li>
-					<li><a href="#competences">Compétences</a></li>
-					<li><a href="#documentations">Documentations</a></li>
-					<li><a href="#veille">Veille</a></li>
-					<li class="nav-cv"><a href="pdf/CV_Alenzo_Wauters.pdf" target="_blank" style="color: #18bfef !important; font-weight: bold;">📄 Mon CV (PDF)</a></li>
-				</ul>
-				<ul class="icons">
-					<li><a href="https://www.linkedin.com/in/alenzo-wauters" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-					<li><a href="https://github.com/ton-pseudo" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+					<li class="active"><a href="#main">Profil</a></li>
+					<li><a href="#formation">Cursus SISR</a></li>
+					<li><a href="#competences">Stack Tech</a></li>
+					<li><a href="#documentations">Travaux E4/E5</a></li>
+					<li><a href="#veille">Cyber-Veille</a></li>
+					<li class="nav-cv"><a href="pdf/CV_Alenzo_Wauters.pdf" target="_blank">📄 CV PDF</a></li>
 				</ul>
 			</nav>
 
 			<div id="main">
 
-				<article class="post featured" data-aos="fade-up">
+				<article class="post featured" data-aos="zoom-in">
 					<header class="major">
-						<h2>À Propos de moi</h2>
-						<p>Passionné par l'informatique et la sécurisation des systèmes, je développe mes compétences en administration réseaux et systèmes. Actuellement en stage à la <strong>D.I.R NORD</strong>, je combine rigueur technique et curiosité pour répondre aux défis de la cybersécurité moderne.</p>
+						<h2>Projet : Architecte SecOps</h2>
+						<p>Actuellement en <strong>BTS SIO SISR</strong> au Lycée Gaston Berger de Lille, j'ai pour ambition de poursuivre en <strong>Mastère Cybersécurité & Cloud Computing</strong> en alternance dès septembre 2026. <br />
+						Mon objectif est de fusionner le développement et l'exploitation avec une couche de sécurité native (SecOps) pour protéger les infrastructures critiques.</p>
 					</header>
-					<ul class="actions special">
-						<li><a href="https://www.linkedin.com/in/alenzo-wauters" class="button large">Voir mon profil LinkedIn</a></li>
-					</ul>
 				</article>
 
-				<section id="formation" data-aos="fade-up">
-					<header class="major">
-						<h2>Formation</h2>
+				<section id="formation">
+					<header class="major" data-aos="fade-right">
+						<h2>Formation & Établissement</h2>
 					</header>
-					<div class="box">
-						<h3>BTS Services Informatiques aux Organisations (SIO)</h3>
-						<p><strong>Option SISR :</strong> Solutions d'Infrastructure, Systèmes et Réseaux.</p>
-						<p>Cette formation polyvalente forme à la gestion de parc informatique, à l'administration de serveurs, à la sécurisation des flux et au support utilisateur. Elle constitue le socle technique idéal pour une spécialisation en Cybersécurité.</p>
-						<ul>
-							<li><strong>Prochainement (Sept 2026) :</strong> Mastère Cybersécurité & Cloud Computing.</li>
-							<li><strong>Baccalauréat :</strong> Obtenu en 2024.</li>
-						</ul>
+					<div class="cyber-card" data-aos="fade-up">
+						<div class="row">
+							<div class="col-8 col-12-small">
+								<h3>Lycée Gaston Berger (Lille)</h3>
+								<p>Le pôle d'excellence informatique des Hauts-de-France.</p>
+								<div class="timeline">
+									<h4>BTS SIO Option SISR (En cours)</h4>
+									<p>Solutions d'Infrastructure, Systèmes et Réseaux. Focus sur la haute disponibilité et la sécurité périmétrique.</p>
+									<span class="badge">Epreuve E4 : Support et services IT</span>
+									<span class="badge">Epreuve E5 : Administration Systèmes</span>
+								</div>
+							</div>
+							<div class="col-4 col-12-small">
+								<h4>Certifications</h4>
+								<ul class="alt">
+									<li><i class="fas fa-check-circle"></i> MOOC ANSSI (Validé)</li>
+									<li><i class="fas fa-spinner"></i> Cisco CCNA (Préparation)</li>
+									<li><i class="fas fa-spinner"></i> Microsoft AZ-900</li>
+								</ul>
+							</div>
+						</div>
 					</div>
 				</section>
 
-				<header class="major" data-aos="fade-up">
-					<h2 id="competences">Compétences SISR</h2>
+				<header class="major">
+					<h2 id="competences">Stack Technique</h2>
 				</header>
 				<section class="posts">
-					<article data-aos="fade-up" data-aos-delay="100">
+					<article class="cyber-card" data-aos="flip-left">
 						<header><h2><i class="fas fa-network-wired"></i> Réseaux</h2></header>
-						<p>Configuration Switchs/Routeurs (Cisco), VLANs, Routage, VPN (Ipsec/OpenVPN), Pare-feu.</p>
+						<p>Segmentation (VLAN 802.1Q), Routage OSPF, Filtrage ACL, VPN Site-à-Site et nomade.</p>
 					</article>
-					<article data-aos="fade-up" data-aos-delay="200">
+					<article class="cyber-card" data-aos="flip-left" data-aos-delay="100">
 						<header><h2><i class="fas fa-server"></i> Systèmes</h2></header>
-						<p>Windows Server (AD, DNS, DHCP, GPO), Linux (Debian/Ubuntu), Scripting Bash/PowerShell.</p>
+						<p>Durcissement Windows/Linux (Hardening), Active Directory, PowerShell Automation.</p>
 					</article>
-					<article data-aos="fade-up" data-aos-delay="300">
-						<header><h2><i class="fas fa-cubes"></i> Virtualisation</h2></header>
-						<p>Mise en place d'environnements virtualisés sous VMware Player, ESXi et Proxmox.</p>
+					<article class="cyber-card" data-aos="flip-left" data-aos-delay="200">
+						<header><h2><i class="fas fa-shield-virus"></i> SecOps</h2></header>
+						<p>Gestion de SIEM (Wazuh), Analyse de logs, Firewalling Stormshield & PFSense.</p>
 					</article>
-					<article data-aos="fade-up" data-aos-delay="400">
-						<header><h2><i class="fas fa-shield-alt"></i> Sécurité</h2></header>
-						<p>Gestion des droits, sauvegardes (Veeam), monitoring (Zabbix/Nagios), sensibilisation aux menaces.</p>
+					<article class="cyber-card" data-aos="flip-left" data-aos-delay="300">
+						<header><h2><i class="fas fa-cloud"></i> Cloud</h2></header>
+						<p>Virtualisation avancée (Proxmox/VMWare), Docker, Introduction à Azure Cloud.</p>
 					</article>
 				</section>
 
-				<section id="documentations" data-aos="fade-up">
-					<header class="major">
-						<h2>Documentations & Projets</h2>
+				<section id="documentations">
+					<header class="major" data-aos="fade-up">
+						<h2>Documentations & Epreuves BTS</h2>
+						<p>Accédez aux dossiers techniques liés à mes épreuves professionnelles.</p>
 					</header>
 					<div class="posts">
-						<article data-aos="fade-up" data-aos-delay="100">
-							<header><h3><i class="fas fa-file-alt"></i> Stage D.I.R NORD</h3></header>
-							<p>Support technique de niveau 1 & 2 et maintenance des infrastructures réseaux routières.</p>
-							<ul class="actions special"><li><a href="#" class="button">Consulter</a></li></ul>
+						<article class="cyber-card">
+							<h3>Situation Professionnelle E4</h3>
+							<p>Support utilisateur et mise en production d'un service de supervision (Zabbix) à la D.I.R NORD.</p>
+							<ul class="actions special"><li><a href="#" class="button">Dossier PDF</a></li></ul>
 						</article>
-						<article data-aos="fade-up" data-aos-delay="200">
-							<header><h3><i class="fas fa-project-diagram"></i> Projet Réseau Sécurisé</h3></header>
-							<p>Simulation et documentation d'une infrastructure d'entreprise (Packet Tracer / GNS3).</p>
-							<ul class="actions special"><li><a href="#" class="button">Consulter</a></li></ul>
+						<article class="cyber-card">
+							<h3>Situation Professionnelle E5</h3>
+							<p>Administration avancée : Migration Active Directory et automatisation des sauvegardes.</p>
+							<ul class="actions special"><li><a href="#" class="button">Dossier PDF</a></li></ul>
 						</article>
 					</div>
 				</section>
 
-				<section id="veille" data-aos="fade-up">
-					<header class="major">
+				<section id="veille">
+					<header class="major" data-aos="fade-down">
 						<h2>Veille Technologique</h2>
+						<p>Thématique : L'IA au service du Phishing et défense par le Zero Trust.</p>
 					</header>
-					<div class="box">
-						<h3>Thématique : Sécurité des infrastructures critiques</h3>
-						<p>Dans le cadre de mon stage à la <strong>D.I.R NORD</strong>, je surveille particulièrement la protection des réseaux d'importance vitale.</p>
-						<hr />
-						<h4>Méthodologie</h4>
-						<p>Collecte via <strong>Feedly</strong> (CERT-FR, ANSSI), suivi d'experts sur LinkedIn/X, et centralisation des connaissances sur <strong>Notion</strong>.</p>
-						<ul class="actions special">
-							<li><a href="#" class="button">Accéder à mon tableau de veille</a></li>
-						</ul>
+					<div class="cyber-card">
+						<div class="row">
+							<div class="col-6 col-12-small">
+								<h4>Outils de collecte</h4>
+								<ul>
+									<li><strong>Feedly :</strong> Sources ANSSI, CERT-FR, BleepingComputer.</li>
+									<li><strong>Labs :</strong> TryHackMe & HackTheBox (Analyse de vulnérabilités).</li>
+								</ul>
+							</div>
+							<div class="col-6 col-12-small">
+								<h4>Synthèse de veille</h4>
+								<p>Retrouvez mes notes d'analyse sur l'évolution des ransomwares ciblant les infrastructures publiques.</p>
+								<ul class="actions special"><li><a href="#" class="button">Accéder au Notion</a></li></ul>
+							</div>
+						</div>
 					</div>
 				</section>
 
 			</div>
 
 			<footer id="footer">
-				<section class="split contact" id="contact" data-aos="fade-up">
-					<section class="alt">
-						<h3>Localisation</h3>
-						<p>Lille & Métropole</p>
+				<section class="split contact" id="contact">
+					<section>
+						<h3>Status</h3>
+						<p>À la recherche d'une alternance Mastère Cyber (Sept 2026)</p>
 					</section>
 					<section>
 						<h3>Email</h3>
-						<p><a href="mailto:votre@email.com">votre@email.com</a></p>
+						<p><a href="mailto:alenzo.wauters@exemple.com">alenzo.wauters@exemple.com</a></p>
 					</section>
 					<section>
-						<h3>Social</h3>
+						<h3>Network</h3>
 						<ul class="icons alt">
 							<li><a href="https://www.linkedin.com/in/alenzo-wauters" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
 							<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
@@ -220,14 +226,8 @@
 				</section>
 			</footer>
 
-			<div style="text-align: center; padding: 2rem; background: #ffffff;">
-				<ul class="actions special">
-					<li><a href="pdf/CV_Alenzo_Wauters.pdf" class="button primary large icon solid fa-download">Télécharger mon CV complet</a></li>
-				</ul>
-			</div>
-
 			<div id="copyright">
-				<ul><li>&copy; Alenzo Wauters</li><li>BTS SIO SISR</li></ul>
+				<ul><li>&copy; Alenzo Wauters</li><li>Gaston Berger SISR</li></ul>
 			</div>
 
 		</div>
@@ -238,13 +238,9 @@
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
-
 		<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 		<script>
-			AOS.init({
-				duration: 1000, // Durée de l'animation en ms
-				once: true      // L'animation ne se joue qu'une seule fois au premier scroll
-			});
+			AOS.init({ duration: 1000, once: true });
 		</script>
 	</body>
 </html>
