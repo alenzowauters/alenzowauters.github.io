@@ -1,170 +1,216 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="fr">
 	<head>
 		<title>Alenzo Wauters | Portfolio SISR</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+		<style>
+			/* Personnalisation Couleurs et Tailles */
+			h1, h2, h3, h4 { 
+				color: #18bfef !important; /* Bleu Cyber */
+				text-transform: uppercase;
+				letter-spacing: 2px;
+			}
+
+			#intro h1 { font-size: 3rem !important; } 
+			#intro p { font-size: 1.1rem !important; }
+
+			#nav { background-color: #1a1a1a !important; }
+			
+			/* Bouton CV dans le menu */
+			.nav-cv {
+				background-color: rgba(24, 191, 239, 0.1);
+				border-radius: 4px;
+			}
+
+			/* Amélioration de la section Compétences */
+			#competences article {
+				border: 1px solid #e5e5e5;
+				padding: 2rem;
+				border-radius: 12px;
+				background: #ffffff;
+				transition: 0.3s;
+				text-align: center;
+				margin-bottom: 20px;
+			}
+
+			#competences article:hover {
+				border-color: #18bfef;
+				box-shadow: 0 8px 20px rgba(24, 191, 239, 0.15);
+				transform: translateY(-5px);
+			}
+
+			#competences h2 { font-size: 1.2rem !important; margin-bottom: 1rem; }
+
+			header.major > p {
+				font-size: 1.1rem;
+				max-width: 800px;
+				margin: 0 auto 2rem auto;
+			}
+
+			/* Fix pour l'affichage mobile et espacement */
+			section { padding: 4rem 0 !important; }
+			.posts { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+			.posts article { width: calc(50% - 20px) !important; }
+			
+			@media screen and (max-width: 736px) {
+				.posts article { width: 100% !important; }
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 
 		<div id="wrapper" class="fade-in">
 
-				<div id="intro">
-						<h1>Alenzo Wauters</h1>
-						<p>Étudiant en BTS SIO Option SISR | Futur alternant en Cybersécurité & SecOps</p>
-						<ul class="actions">
-							<li><a href="#nav" class="button icon solid solo fa-arrow-down scrolly">Entrer</a></li>
+			<div id="intro">
+				<h1>Alenzo Wauters</h1>
+				<p>Étudiant en BTS SIO Option SISR | Futur alternant en Cybersécurité & SecOps</p>
+				<ul class="actions">
+					<li><a href="#nav" class="button icon solid solo fa-arrow-down scrolly">Entrer</a></li>
+				</ul>
+			</div>
+
+			<nav id="nav">
+				<ul class="links">
+					<li class="active"><a href="#main">À propos</a></li>
+					<li><a href="#formation">Formation</a></li>
+					<li><a href="#competences">Compétences</a></li>
+					<li><a href="#documentations">Documentations</a></li>
+					<li><a href="#veille">Veille</a></li>
+					<li class="nav-cv"><a href="pdf/CV_Alenzo_Wauters.pdf" target="_blank" style="color: #18bfef !important; font-weight: bold;">📄 Mon CV (PDF)</a></li>
+				</ul>
+				<ul class="icons">
+					<li><a href="https://www.linkedin.com/in/alenzo-wauters" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+					<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+				</ul>
+			</nav>
+
+			<div id="main">
+
+				<article class="post featured">
+					<header class="major">
+						<h2>À Propos de moi</h2>
+						<p>Passionné par l'informatique et la sécurisation des systèmes, je développe mes compétences en administration réseaux et systèmes. Actuellement en stage à la <strong>D.I.R NORD</strong>, je combine rigueur technique et curiosité pour répondre aux défis de la cybersécurité moderne.</p>
+					</header>
+					<ul class="actions special">
+						<li><a href="https://www.linkedin.com/in/alenzo-wauters" class="button large">Voir mon profil LinkedIn</a></li>
+					</ul>
+				</article>
+
+				<section id="formation">
+					<header class="major">
+						<h2>Formation</h2>
+					</header>
+					<div class="box">
+						<h3>BTS Services Informatiques aux Organisations (SIO)</h3>
+						<p><strong>Option SISR :</strong> Solutions d'Infrastructure, Systèmes et Réseaux.</p>
+						<p>Cette formation polyvalente forme à la gestion de parc informatique, à l'administration de serveurs, à la sécurisation des flux et au support utilisateur. Elle constitue le socle technique idéal pour une spécialisation en Cybersécurité.</p>
+						<ul>
+							<li><strong>Prochainement (Sept 2026) :</strong> Mastère Cybersécurité & Cloud Computing.</li>
+							<li><strong>Baccalauréat :</strong> Obtenu en 2024.</li>
 						</ul>
 					</div>
+				</section>
 
-				<nav id="nav">
-    <ul class="links">
-        <li class="active"><a href="#main">À propos</a></li>
-        <li><a href="#formation">Formation</a></li>
-        <li><a href="#competences">Compétences</a></li>
-        <li><a href="#documentations">Documentations</a></li>
-        <li><a href="#veille">Veille</a></li>
-        <li style="background-color: #f5f5f5;"><a href="pdf/CV_Alenzo_Wauters.pdf" target="_blank" style="color: #18bfef !important; font-weight: bold;">📄 Mon CV (PDF)</a></li>
-    </ul>
-    <ul class="icons">
-        <li><a href="https://www.linkedin.com/in/alenzo-wauters" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-        <li><a href="https://github.com/ton-pseudo" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-    </ul>
-</nav>
+				<header class="major">
+					<h2 id="competences">Compétences SISR</h2>
+				</header>
+				<section class="posts">
+					<article>
+						<header><h2>Réseaux</h2></header>
+						<p>Configuration Switchs/Routeurs (Cisco), VLANs, Routage, VPN (Ipsec/OpenVPN), Pare-feu.</p>
+					</article>
+					<article>
+						<header><h2>Systèmes</h2></header>
+						<p>Windows Server (AD, DNS, DHCP, GPO), Linux (Debian/Ubuntu), Scripting Bash/PowerShell.</p>
+					</article>
+					<article>
+						<header><h2>Virtualisation</h2></header>
+						<p>Mise en place d'environnements virtualisés sous VMware Player, ESXi et Proxmox.</p>
+					</article>
+					<article>
+						<header><h2>Sécurité</h2></header>
+						<p>Gestion des droits, sauvegardes (Veeam), monitoring (Zabbix/Nagios), sensibilisation aux menaces.</p>
+					</article>
+				</section>
 
-				<div id="main">
-
-						<article class="post featured">
-								<header class="major">
-									<h2>À Propos de moi</h2>
-									<p>Passionné par l'informatique et la sécurisation des systèmes, je développe mes compétences en administration réseaux et systèmes. Actuellement en stage à la <strong>D.I.R NORD</strong>, je combine rigueur technique et curiosité pour répondre aux défis de la cybersécurité moderne.</p>
-								</header>
-								<ul class="actions special">
-									<li><a href="https://www.linkedin.com/in/alenzo-wauters" class="button large">Voir mon profil LinkedIn</a></li>
-								</ul>
-							</article>
-
-						<section id="formation">
-								<header class="major">
-									<h2>Formation</h2>
-								</header>
-								<div class="box">
-									<h3>BTS Services Informatiques aux Organisations (SIO)</h3>
-									<p><strong>Option SISR :</strong> Solutions d'Infrastructure, Systèmes et Réseaux.</p>
-									<p>Cette formation polyvalente forme à la gestion de parc informatique, à l'administration de serveurs, à la sécurisation des flux et au support utilisateur. Elle constitue le socle technique idéal pour une spécialisation en Cybersécurité.</p>
-									<ul>
-										<li><strong>Prochainement (Sept 2026) :</strong> Mastère Cybersécurité & Cloud Computing.</li>
-										<li><strong>Baccalauréat :</strong> [Ton Bac] à [Ton Lycée].</li>
-									</ul>
-								</div>
-							</section>
-
-						<section id="competences" class="posts">
-								<article>
-									<header><h2>Réseaux</h2></header>
-									<p>Configuration Switchs/Routeurs (Cisco), VLANs, Routage, VPN (Ipsec/OpenVPN), Pare-feu.</p>
-								</article>
-								<article>
-									<header><h2>Systèmes</h2></header>
-									<p>Windows Server (AD, DNS, DHCP, GPO), Linux (Debian/Ubuntu), Scripting Bash/PowerShell.</p>
-								</article>
-								<article>
-									<header><h2>Virtualisation</h2></header>
-									<p>Mise en place d'environnements virtualisés sous VMware Player, ESXi et Proxmox.</p>
-								</article>
-								<article>
-									<header><h2>Sécurité</h2></header>
-									<p>Gestion des droits, sauvegardes (Veeam), monitoring (Zabbix/Nagios), sensibilisation aux menaces.</p>
-								</article>
-							</section>
-
-						<section id="documentations">
-								<header class="major">
-									<h2>Documentations & Projets</h2>
-								</header>
-								<div class="posts">
-									<article>
-										<header><h3>Stage D.I.R NORD</h3></header>
-										<p>Documentation sur le support technique et la maintenance des infrastructures réseaux routières.</p>
-										<ul class="actions special"><li><a href="#" class="button">Consulter</a></li></ul>
-									</article>
-									<article>
-										<header><h3>Projet Réseau Sécurisé</h3></header>
-										<p>Simulation et documentation d'une infrastructure d'entreprise sous Cisco Packet Tracer / GNS3.</p>
-										<ul class="actions special"><li><a href="#" class="button">Consulter</a></li></ul>
-									</article>
-								</div>
-							</section>
-
-						<section id="veille">
-        <header class="major">
-            <h2>Veille Technologique</h2>
-        </header>
-        
-        <div class="box">
-            <h3>Ma thématique : L'évolution des menaces sur les infrastructures critiques</h3>
-            <p>Dans le cadre de mon stage à la <strong>D.I.R NORD</strong> et de mon projet professionnel en Cybersécurité, je concentre ma veille sur la protection des systèmes industriels et des réseaux d'importance vitale.</p>
-            
-            <hr />
-            
-            <h4>Méthodologie de collecte (Sourcing)</h4>
-            <p>Pour garantir une information fiable et réactive, j'utilise une approche multi-canaux :</p>
-            <ul>
-                <li><strong>Flux RSS :</strong> Agrégation via <strong>Feedly</strong> des sources officielles (CERT-FR, ANSSI, ZDNet Security).</li>
-                <li><strong>Réseaux Sociaux :</strong> Suivi d'experts en cybersécurité sur Twitter (X) et LinkedIn pour détecter les vulnérabilités 0-day.</li>
-                <li><strong>Newsletters :</strong> Abonnement à la "Cyber Hebdo" et aux alertes du portail de la transformation numérique.</li>
-            </ul>
-
-            <h4>Outils de traitement & Stockage</h4>
-            <p>Les informations pertinentes sont triées et synthétisées dans un espace <strong>Notion</strong> dédié. Cela me permet de créer une base de connaissances exploitable pour mes futurs projets SecOps.</p>
-            
-            <ul class="actions special">
-                <li><a href="#" class="button">Accéder à mon tableau de veille (PDF)</a></li>
-            </ul>
-        </div>
-    </section>
-
+				<section id="documentations">
+					<header class="major">
+						<h2>Documentations & Projets</h2>
+					</header>
+					<div class="posts">
+						<article>
+							<header><h3>Stage D.I.R NORD</h3></header>
+							<p>Support technique de niveau 1 & 2 et maintenance des infrastructures réseaux routières.</p>
+							<ul class="actions special"><li><a href="#" class="button">Consulter</a></li></ul>
+						</article>
+						<article>
+							<header><h3>Projet Réseau Sécurisé</h3></header>
+							<p>Simulation et documentation d'une infrastructure d'entreprise (Packet Tracer / GNS3).</p>
+							<ul class="actions special"><li><a href="#" class="button">Consulter</a></li></ul>
+						</article>
 					</div>
+				</section>
 
-				<footer id="footer">
-						<section class="split contact" id="contact">
-							<section class="alt">
-								<h3>Localisation</h3>
-								<p>Lille & Métropole</p>
-							</section>
-							<section>
-								<h3>Email</h3>
-								<p><a href="mailto:ton.email@exemple.com">ton.email@exemple.com</a></p>
-							</section>
-							<section>
-								<h3>Social</h3>
-								<ul class="icons alt">
-									<li><a href="https://www.linkedin.com/in/alenzo-wauters" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
-									<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-								</ul>
-							</section>
-						</section>
-					</footer>
-
-				<div id="copyright">
-						<ul><li>&copy; Alenzo Wauters</li><li>Design inspiré par le cursus SISR</li></ul>
+				<section id="veille">
+					<header class="major">
+						<h2>Veille Technologique</h2>
+					</header>
+					<div class="box">
+						<h3>Thématique : Sécurité des infrastructures critiques</h3>
+						<p>Dans le cadre de mon stage à la <strong>D.I.R NORD</strong>, je surveille particulièrement la protection des réseaux d'importance vitale.</p>
+						<hr />
+						<h4>Méthodologie</h4>
+						<p>Collecte via <strong>Feedly</strong> (CERT-FR, ANSSI), suivi d'experts sur LinkedIn/X, et centralisation des connaissances sur <strong>Notion</strong>.</p>
+						<ul class="actions special">
+							<li><a href="#" class="button">Accéder à mon tableau de veille</a></li>
+						</ul>
 					</div>
-			<div style="text-align: center; padding: 2rem;">
-    <ul class="actions special">
-        <li><a href="pdf/CV_Alenzo_Wauters.pdf" class="button primary large icon solid fa-download">Télécharger mon CV complet</a></li>
-    </ul>
-</div>
+				</section>
 
 			</div>
 
+			<footer id="footer">
+				<section class="split contact" id="contact">
+					<section class="alt">
+						<h3>Localisation</h3>
+						<p>Lille & Métropole</p>
+					</section>
+					<section>
+						<h3>Email</h3>
+						<p><a href="mailto:votre@email.com">votre@email.com</a></p>
+					</section>
+					<section>
+						<h3>Social</h3>
+						<ul class="icons alt">
+							<li><a href="https://www.linkedin.com/in/alenzo-wauters" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</section>
+				</section>
+			</footer>
+
+			<div style="text-align: center; padding: 2rem; background: #ffffff;">
+				<ul class="actions special">
+					<li><a href="pdf/CV_Alenzo_Wauters.pdf" class="button primary large icon solid fa-download">Télécharger mon CV complet</a></li>
+				</ul>
+			</div>
+
+			<div id="copyright">
+				<ul><li>&copy; Alenzo Wauters</li><li>BTS SIO SISR</li></ul>
+			</div>
+
+		</div>
+
 		<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/main.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
 
 	</body>
 </html>
-
-
-
