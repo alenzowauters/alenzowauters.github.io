@@ -1,2 +1,0 @@
-# alenzowauters.github.io
-Portfolio
