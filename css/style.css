@@ -938,6 +938,26 @@ animation-delay: -1.0s;
     </div>
 </section>
 /* ----------------------------------------------------------------
+    [ 12 Start Veille ]
+-----------------------------------------------------------------*/
+.veille-link {
+    text-decoration: none !important;
+    display: block;
+    color: inherit;
+    transition: transform 0.3s ease;
+}
+
+.veille-link:hover {
+    transform: translateY(-5px); /* Petit effet de levée au survol */
+}
+
+.veille-link .single-service:hover h4 {
+    color: #F45B39; /* Rappel de votre couleur orange au survol du titre */
+}
+/* ----------------------------------------------------------------
+    [ End Veille ]
+-----------------------------------------------------------------*/
+/* ----------------------------------------------------------------
     [ 11 Start Contact ]
 -----------------------------------------------------------------*/
 .contact_widget_area {
@@ -1066,5 +1086,6 @@ animation-delay: -1.0s;
     [ End Top-control ]
 
 -----------------------------------------------------------------*/
+
 
 
