@@ -900,7 +900,43 @@ animation-delay: -1.0s;
     [ End Testimonial ]
 -----------------------------------------------------------------*/
 
-
+<section class="section_padding" id="veille">
+    <div class="container">
+        <div class="section_heading text-center">
+            <strong>Ma Veille</strong>
+            <h2>Veille Technologique</h2>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <a href="pdf/Veille_Theme_1.pdf" target="_blank" class="veille-link">
+                    <div class="single-service">
+                        <i class="ti-search"></i>
+                        <h4>Thème de Veille 1</h4>
+                        <p>Cliquez pour télécharger la documentation complète au format PDF.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <a href="pdf/Veille_Theme_2.pdf" target="_blank" class="veille-link">
+                    <div class="single-service">
+                        <i class="ti-shield"></i>
+                        <h4>Thème de Veille 2</h4>
+                        <p>Cliquez pour télécharger la documentation complète au format PDF.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <a href="pdf/Veille_Theme_3.pdf" target="_blank" class="veille-link">
+                    <div class="single-service">
+                        <i class="ti-rss"></i>
+                        <h4>Thème de Veille 3</h4>
+                        <p>Cliquez pour télécharger la documentation complète au format PDF.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
 /* ----------------------------------------------------------------
     [ 11 Start Contact ]
 -----------------------------------------------------------------*/
@@ -1030,4 +1066,5 @@ animation-delay: -1.0s;
     [ End Top-control ]
 
 -----------------------------------------------------------------*/
+
 
