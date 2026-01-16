@@ -181,12 +181,13 @@ animation-delay: -1.0s;
 }
 .section_heading strong {
     color: #F45B39;
-    font-weight: 300;
-    font-family: 'Arizonia', cursive;
-    text-transform: capitalize;
-    font-size: 30px;
-    padding: 5px 17px;
-    border-radius: 4px;
+    font-weight: 600; /* Augmenté de 300 à 600 pour plus de présence */
+    font-family: 'Poppins', sans-serif; /* Remplacement d'Arizonia */
+    text-transform: uppercase; /* "Capitalize" devient "Uppercase" pour un look badge/technique */
+    font-size: 14px; /* Réduit de 30px à 14px pour un aspect plus moderne et discret */
+    padding: 5px 15px;
+    letter-spacing: 2px; /* Ajout d'espacement entre les lettres pour le style */
+    display: inline-block; /* Assure que le padding et les marges s'appliquent bien */
 }
 .section_heading h2 {
     font-size: 42px;
@@ -730,10 +731,13 @@ animation-delay: -1.0s;
     margin: 0 0 30px;
     padding-left: 15px;
 }
-.edu-list > li strong{
+.edu-list > li strong {
     color: #F45B39;
-    font-size: 16px;
-    font-family: 'Arizonia', cursive;
+    font-size: 14px; /* Un peu plus petit pour un look plus pro */
+    font-family: 'Poppins', sans-serif; /* Remplace Arizonia */
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 .edu-list > li h5{
     font-size: 16px;
@@ -1024,4 +1028,5 @@ animation-delay: -1.0s;
 }
 /* ----------------------------------------------------------------
     [ End Top-control ]
+
 -----------------------------------------------------------------*/
