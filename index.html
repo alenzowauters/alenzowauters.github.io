@@ -387,20 +387,81 @@
 <!-- END PORTFOLIO -->
 <!-- START TESTIMONIALS -->
 <section class="section_padding pb_70" id="testimonial_area">
-<div class="container">
-<div 0.2s;="" 1s;="" animation-delay:="" animation-duration:="" animation-name:="" class="col-md-12 col-sm-12-col-xs-12 wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="1s" data-wow-offset="0" none;""="">
-<div class="section_heading text-center">
-<strong>BTS SIO</strong>
-<h2 class="text_white">Certifications, épreuves et dossiers</h2>
-</div>
-</div>
-<div class="row">
-<div class="col-lg-12 col-12">
-<div class="testmonial_slider_area text-center owl-carousel"><div class="single_testimonial"><div class="pic"><img alt="" src="images/testimonial/1.jpg"/></div><h5 class="testimonial-title">BTS SIO — Option SISR</h5><span class="test_designation">Systèmes &amp; Réseaux</span><p class="description">Parcours orienté administration systèmes, réseaux et cybersécurité : Windows Server, Active Directory, virtualisation, services réseaux.</p></div><div class="single_testimonial"><div class="pic"><img alt="" src="images/testimonial/1.jpg"/></div><h5 class="testimonial-title">Certifications</h5><span class="test_designation">En cours</span><p class="description">Préparation et consolidation des compétences : scripts PowerShell/Bash, réseaux (Cisco IOS), bases cybersécurité et bonnes pratiques d’exploitation.</p></div><div class="single_testimonial"><div class="pic"><img alt="" src="images/testimonial/1.jpg"/></div><h5 class="testimonial-title">Épreuves &amp; Projets</h5><span class="test_designation">BTS SIO</span><p class="description">Travaux pratiques et projets autour du support, de l’infrastructure et de la sécurisation des services informatiques, avec restitution structurée.</p></div><div class="single_testimonial"><div class="pic"><img alt="" src="images/testimonial/1.jpg"/></div><h5 class="testimonial-title">Dossiers techniques</h5><span class="test_designation">Documentation</span><p class="description">Rédaction et mise à jour de documents : procédures, schémas, comptes‑rendus d’intervention, dossiers de configuration et de mise en production.</p></div></div>
-</div>
-</div>
-</div>
+    <div class="container">
+        <div class="col-md-12 col-sm-12 col-xs-12 wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="1s" data-wow-offset="0">
+            <div class="section_heading text-center">
+                <strong>BTS SIO</strong>
+                <h2 class="text_white">Certifications, épreuves et dossiers</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-12">
+                <div class="testmonial_slider_area text-center owl-carousel">
+                    
+                    <div class="single_testimonial">
+                        <h5 class="testimonial-title">BTS SIO SISR et compétences professionnelles</h5>
+                        <div class="video_container" style="margin: 20px 0; position: relative;">
+                            <video id="promoVideo" controls width="100%" poster="images/testimonial/1.jpg" style="border-radius: 10px; max-height: 300px; background: #000; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                                <source src="videos/presentation_bts_sio.mp4" type="video/mp4">
+                                Votre navigateur ne supporte pas la lecture de vidéos.
+                            </video>
+                            
+                            <div style="margin-top: 15px;">
+                                <button onclick="openFullscreen();" class="btn_one" style="padding: 10px 20px; font-size: 14px; cursor: pointer; border-radius: 5px; border: none; background-color: #ff3115; color: white; transition: 0.3s;">
+                                    <i class="fa fa-arrows-alt"></i> Regarder en plein écran
+                                </button>
+                            </div>
+                        </div>
+                        <p class="description">Découvrez la présentation du parcours SISR et les domaines de compétences associés à la formation.</p>
+                    </div>
+
+                    <div class="single_testimonial">
+                        <div class="pic"><img alt="" src="images/testimonial/1.jpg"/></div>
+                        <h5 class="testimonial-title">BTS SIO — Option SISR</h5>
+                        <span class="test_designation">Systèmes &amp; Réseaux</span>
+                        <p class="description">Parcours orienté administration systèmes, réseaux et cybersécurité : Windows Server, Active Directory, virtualisation et services réseaux.</p>
+                    </div>
+
+                    <div class="single_testimonial">
+                        <div class="pic"><img alt="" src="images/testimonial/1.jpg"/></div>
+                        <h5 class="testimonial-title">Certifications</h5>
+                        <span class="test_designation">En cours</span>
+                        <p class="description">Préparation et consolidation des compétences : scripts PowerShell, réseaux Cisco, et bases de la cybersécurité.</p>
+                    </div>
+
+                    <div class="single_testimonial">
+                        <div class="pic"><img alt="" src="images/testimonial/1.jpg"/></div>
+                        <h5 class="testimonial-title">Épreuves &amp; Projets</h5>
+                        <span class="test_designation">BTS SIO E5</span>
+                        <p class="description">Travaux pratiques autour du support et de la sécurisation des services informatiques, incluant le déploiement d'infrastructures.</p>
+                    </div>
+
+                    <div class="single_testimonial">
+                        <div class="pic"><img alt="" src="images/testimonial/1.jpg"/></div>
+                        <h5 class="testimonial-title">Dossiers techniques</h5>
+                        <span class="test_designation">Documentation</span>
+                        <p class="description">Rédaction de procédures techniques, schémas réseau et rapports de mise en production pour le jury.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
+
+<script>
+/* Fonction pour forcer le plein écran sur la vidéo */
+function openFullscreen() {
+  var elem = document.getElementById("promoVideo");
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) { /* Safari */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE11 */
+    elem.msRequestFullscreen();
+  }
+}
+</script>
 <!-- END TESTIMONIALS -->
 <!-- START VEILLE -->
 <section class="section_padding" id="veille">
@@ -513,6 +574,7 @@
 <script src="js/main.js"></script>
 </body>
 </html> 
+
 
 
 
