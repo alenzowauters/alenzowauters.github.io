@@ -54,7 +54,7 @@
 		width: 350px;
 		left: auto;
 		right: -9%;
-		background: #04B310;
+		background: #ff6347;
 		float: right;
 		box-shadow: -1px 1px 1px rgb(20 97 255 / 10%);
 	}
@@ -127,4 +127,5 @@
 		margin-top: 100px !important;
 		margin-left: 50px;
 	}
+
 }
