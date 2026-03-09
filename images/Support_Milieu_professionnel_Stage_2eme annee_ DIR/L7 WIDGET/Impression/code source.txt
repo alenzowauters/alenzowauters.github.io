@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    /* Interface Écran */
+    body { margin: 0; padding: 0; background: #f0f2f5; font-family: sans-serif; }
+    
+    .nav-bar { 
+      background: #000091; color: white; padding: 15px; 
+      text-align: center; position: sticky; top: 0; z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .btn { 
+      background: #ff5722; color: white; border: none; padding: 12px 30px; 
+      font-weight: bold; cursor: pointer; border-radius: 4px; font-size: 16px;
+    }
+
+    .page-A4 {
+      width: 21cm;
+      margin: 20px auto;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden; /* Cache le bas de l'iframe */
+    }
+
+    /* Ta signature Alenzo placée en haut */
+    .header-alenzo {
+      text-align: right;
+      padding: 10px 20px;
+      font-size: 11px;
+      color: #666;
+      background: #fafafa;
+      border-bottom: 1px solid #eee;
+    }
+    .header-alenzo a { color: #000091; text-decoration: none; font-weight: bold; }
+
+    iframe { 
+      width: 100%; 
+      height: 7000px; /* Grande hauteur pour ne rien couper */
+      border: none;
+      display: block;
+      margin-bottom: -150px; /* Rogne le logo Grist tout en bas */
+    }
+
+    /* RÉGLAGES IMPRESSION */
+    @media print {
+      @page { size: A4; margin: 0; }
+      body { background: white; }
+      .nav-bar { display: none !important; }
+      
+      .page-A4 { 
+        width: 100% !important; 
+        margin: 0 !important; 
+        box-shadow: none !important;
+        overflow: visible !important;
+      }
+
+      .header-alenzo {
+        display: block !important;
+        border-bottom: none;
+        padding-top: 1cm; /* Marge pour l'imprimante */
+      }
+
+      iframe { 
+        height: auto !important;
+        min-height: 1000px;
+        margin-bottom: -150px !important; 
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav-bar">
+    <button class="btn" onclick="window.print()">🖨️ Imprimer le formulaire</button>
+  </div>
+
+  <div class="page-A4">
+    <div class="header-alenzo">
+      made by <a href="https://alenzowauters.github.io" target="_blank">Alenzo</a>
+    </div>
+
+    <iframe src="https://grist.numerique.gouv.fr/o/info-dirn/forms/fcit7zLh8xkXSDHu7tXJMN/42"></iframe>
+  </div>
+
+</body>
+</html>
