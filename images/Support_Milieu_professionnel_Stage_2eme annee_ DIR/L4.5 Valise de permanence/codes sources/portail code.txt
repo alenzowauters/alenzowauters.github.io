@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>DIR NORD - Permanence Live</title>
+    <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            /* COULEURS OFFICIELLES ET ROUTIÈRES */
+            --rf-blue: #000091; 
+            --rf-red: #E1000F;
+            --road-dark: #1e293b;
+            --safety-orange: #ff7f00;
+            --sign-white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.92);
+            --emis-color: #3b82f6;
+            --recu-color: #f97316;
+        }
+
+        body {
+            font-family: 'Marianne', 'Segoe UI', sans-serif;
+            margin: 0; padding: 20px;
+            background-color: var(--road-dark);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* --- FOND ANIMÉ --- */
+        #bg-canvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: linear-gradient(to bottom, #0f172a, #1e293b);
+        }
+
+        /* --- SABLIER (BARRE DE PROGRESSION) --- */
+        .refresh-loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 5px;
+            background: rgba(255,255,255,0.1); z-index: 9999;
+        }
+        #progress-bar {
+            height: 100%; width: 100%;
+            background: linear-gradient(90deg, var(--rf-blue), var(--rf-red));
+            transition: width 5s linear;
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        /* --- HEADER OFFICIEL --- */
+        header {
+            background: var(--glass);
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            display: flex; justify-content: space-between; align-items: center;
+            border-left: 6px solid var(--rf-blue);
+            backdrop-filter: blur(10px);
+            margin-bottom: 20px;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        .logo-bloc { display: flex; align-items: center; gap: 15px; }
+        .marianne {
+            width: 40px; height: 25px;
+            background: linear-gradient(to right, var(--rf-blue) 33%, white 33%, white 66%, var(--rf-red) 66%);
+            border: 1px solid #ddd;
+        }
+        .titre-dir { font-weight: 800; font-size: 1.2rem; letter-spacing: 1px; color: var(--road-dark); text-transform: uppercase; }
+        .titre-dir span { color: var(--rf-blue); }
+        .status-badge {
+            background: #e2e8f0; color: #475569; padding: 5px 10px;
+            border-radius: 4px; font-size: 0.8rem; font-weight: bold; border: 1px solid #cbd5e1;
+        }
+
+        /* --- CONTAINER PRINCIPAL --- */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px; padding: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            min-height: calc(100vh - -140px);
+            display: flex; flex-direction: column;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* --- FILTRES --- */
+        .filters {
+            display: flex; gap: 15px; align-items: flex-end;
+            margin-bottom: 20px; padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.9); padding: 15px; border-radius: 8px;
+        }
+
+        label { font-size: 0.75rem; font-weight: bold; color: var(--rf-blue); text-transform: uppercase; display: block; margin-bottom: 4px; }
+        input[type="date"] { padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 4px; font-family: inherit; }
+        
+        button.btn-search, button.btn-print {
+            border: none;
+            padding: 9px 20px; border-radius: 4px; font-weight: bold;
+            cursor: pointer; transition: 0.3s;
+        }
+
+        button.btn-search {
+            background: var(--rf-blue); color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 145, 0.2);
+        }
+        button.btn-search:hover { background: #1e3a8a; transform: translateY(-1px); }
+
+        button.btn-print {
+            background: #475569; color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        button.btn-print:hover { background: #1e293b; transform: translateY(-1px); }
+
+        /* --- GRILLE DE RÉPONSES --- */
+        .grid-wrapper {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px; padding-bottom: 20px;
+        }
+
+        .reponse-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px; padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border-left: 5px solid #ccc;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative; overflow: hidden;
+            animation: fadeIn 0.5s ease-out;
+        }
+        .reponse-card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
+
+        .card-emis { border-left-color: var(--emis-color); }
+        .card-recu { border-left-color: var(--recu-color); }
+
+        .card-header { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.8rem; color: #64748b; font-weight: bold; }
+        .card-time { font-family: 'Courier New', monospace; }
+        
+        .card-badge {
+            padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; text-transform: uppercase;
+        }
+        .badge-emis { background: #dbeafe; color: var(--emis-color); }
+        .badge-recu { background: #ffedd5; color: var(--recu-color); }
+
+        .card-corresp { font-size: 1.1rem; font-weight: 800; color: #1e293b; margin-bottom: 5px; }
+        .card-info { font-size: 0.9rem; color: #334155; line-height: 1.4; margin-bottom: 10px; }
+        
+        .card-action {
+            background: #f1f5f9; padding: 10px; border-radius: 6px;
+            font-size: 0.85rem; color: var(--rf-blue); border-left: 3px solid var(--rf-blue);
+            margin-top: auto;
+        }
+        .card-footer { margin-top: 10px; font-size: 0.75rem; color: #94a3b8; font-style: italic; text-align: right; }
+
+        /* --- POPUP (MODAL) --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.9); z-index: 10000;
+            display: flex; justify-content: center; align-items: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.5s;
+        }
+        .modal-overlay.visible { opacity: 1; pointer-events: auto; }
+
+        .modal-box {
+            background: white; width: 400px; padding: 40px; border-radius: 8px; text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5); border-top: 5px solid var(--rf-blue);
+            transform: translateY(50px); transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .modal-overlay.visible .modal-box { transform: translateY(0); }
+
+        .modal-title { color: var(--rf-blue); font-size: 1.5rem; margin-bottom: 10px; }
+        .modal-text { color: #64748b; margin-bottom: 30px; line-height: 1.5; }
+
+        .btn-primary {
+            display: block; width: 100%; padding: 15px; margin-bottom: 10px;
+            background: var(--rf-blue); color: white; text-decoration: none;
+            border-radius: 4px; font-weight: bold; transition: 0.2s;
+        }
+        .btn-primary:hover { background: #2563eb; }
+        .btn-secondary { background: transparent; border: none; color: #94a3b8; cursor: pointer; text-decoration: underline; font-size: 0.9rem; }
+
+        @keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- STYLES IMPRESSION --- */
+        @media print {
+            body { background: white !important; color: black !important; padding: 0; }
+            #bg-canvas, .refresh-loader, header, .filters, .modal-overlay, .btn-print, .btn-search {
+                display: none !important;
+            }
+            .card { background: none !important; box-shadow: none !important; padding: 0 !important; }
+            .reponse-card {
+                break-inside: avoid;
+                border: 1px solid #ddd !important;
+                background: white !important;
+                margin-bottom: 15px;
+            }
+            .grid-wrapper { display: block !important; }
+        }
+
+    </style>
+</head>
+<body onmousedown="handleMiddleClick(event)">
+
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="refresh-loader">
+        <div id="progress-bar"></div>
+    </div>
+
+    <div class="modal-overlay visible" id="startModal">
+        <div class="modal-box">
+            <h2 class="modal-title">Portail de Permanence</h2>
+            <div class="marianne" style="margin: 0 auto 20px auto; width: 60px; height: 10px;"></div>
+            <p class="modal-text">
+                Bienvenue sur l'interface de gestion DIR NORD.<br>
+                Souhaitez-vous consulter les archives ou voir le profil du développeur ?
+            </p>
+            <a href="https://alenzowauters.github.io" target="_blank" class="btn-primary">🚀 Voir le Portfolio du Créateur</a>
+            <button class="btn-secondary" onclick="fermerModal()">Accéder à l'outil</button>
+        </div>
+    </div>
+
+    <header>
+        <div class="logo-bloc">
+            <div class="marianne"></div>
+            <div class="titre-dir">RÉPUBLIQUE FRANÇAISE<br><span>DIR NORD</span></div>
+        </div>
+        <div class="status-badge" id="last-update">🟢 Sync Live</div>
+    </header>
+
+    <div class="card js-tilt">
+        <div class="filters">
+            <div><label>Date Début</label><input type="date" id="d1"></div>
+            <div><label>Date Fin</label><input type="date" id="d2"></div>
+            <button class="btn-search" onclick="forcerRafraichir()">ACTUALISER</button>
+            <button class="btn-print" onclick="window.print()">
+                <i class="fas fa-print"></i> IMPRIMER / PDF
+            </button>
+        </div>
+
+        <div class="table-wrapper">
+            <div id="tableau-contenu" class="grid-wrapper">Chargement...</div>
+        </div>
+    </div>
+
+<script>
+    // --- 1. GESTION DU POPUP ---
+    function fermerModal() {
+        document.getElementById('startModal').classList.remove('visible');
+    }
+
+    // --- RACCOURCI CLIC MOLETTE ---
+    function handleMiddleClick(e) {
+        if (e.button === 1) { // 1 = clic molette
+            window.print();
+        }
+    }
+
+    // --- 2. ANIMATION CANVAS ---
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+
+    let lines = [];
+    for(let i=0; i<40; i++) {
+        lines.push({
+            x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+            w: Math.random() * 100 + 50, s: Math.random() * 5 + 2, o: Math.random() * 0.5
+        });
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+        gradient.addColorStop(0, '#0f172a'); gradient.addColorStop(1, '#1e293b');
+        ctx.fillStyle = gradient; ctx.fillRect(0,0, canvas.width, canvas.height);
+
+        lines.forEach(l => {
+            l.x += l.s; if(l.x > canvas.width) l.x = -l.w;
+            ctx.fillStyle = `rgba(255, 255, 255, ${l.o * 0.1})`; ctx.fillRect(l.x, l.y, l.w, 2);
+        });
+        requestAnimationFrame(animate);
+    }
+    animate();
+
+    // --- 3. LOGIQUE GRIST + SABLIER ---
+    let records = [];
+    grist.ready({ requiredAccess: 'full' });
+
+    function startTimer() {
+        const bar = document.getElementById('progress-bar');
+        bar.style.transition = 'none'; bar.style.width = '100%';
+        setTimeout(() => {
+            bar.style.transition = 'width 5s linear'; bar.style.width = '0%';
+        }, 50);
+    }
+
+    setInterval(() => {
+        startTimer();
+    }, 5000);
+
+    grist.onRecords(r => {
+        records = r;
+        if(!document.getElementById('d1').value) {
+            const now = new Date();
+            document.getElementById('d1').valueAsDate = new Date(now.getFullYear(), now.getMonth(), 1);
+            document.getElementById('d2').valueAsDate = now;
+        }
+        rafraichir();
+        startTimer();
+    });
+
+    function forcerRafraichir() {
+        rafraichir();
+        startTimer();
+    }
+
+    function rafraichir() {
+        const d1 = new Date(document.getElementById('d1').value);
+        const d2 = new Date(document.getElementById('d2').value);
+        d2.setHours(23, 59, 59);
+
+        const data = records.filter(r => {
+            const dateVal = r.Date || r.date; if (!dateVal) return false;
+            const d = new Date(dateVal); return d >= d1 && d <= d2;
+        }).sort((a,b) => new Date(b.Date||b.date) - new Date(a.Date||a.date));
+
+        const container = document.getElementById('tableau-contenu');
+
+        if(data.length === 0) {
+            container.innerHTML = `<div style="text-align:center; padding:50px; color:white; width:100%;">🚫 Aucune donnée sur cette période.</div>`;
+            return;
+        }
+
+        let html = '';
+        data.forEach(r => {
+            const flux = (r.Appel || r.appel || "").toString();
+            const isEmis = flux.toLowerCase().includes('émis') || flux.toLowerCase().includes('emis');
+            const cardClass = isEmis ? 'card-emis' : 'card-recu';
+            const badgeClass = isEmis ? 'badge-emis' : 'badge-recu';
+            const icon = isEmis ? 'fa-arrow-up' : 'fa-arrow-down';
+            
+            const info = r.Information || r.information || r.Info || "";
+            const action = r.Action || r.action || "";
+            const correspondant = r.Correspondant || r.correspondant || "Inconnu";
+            const dateObj = new Date(r.Date||r.date);
+
+            html += `
+            <div class="reponse-card ${cardClass}">
+                <div class="card-header">
+                    <span class="card-time">${dateObj.toLocaleDateString('fr-FR')} - ${dateObj.toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit'})}</span>
+                    <span class="card-badge ${badgeClass}"><i class="fas ${icon}"></i> ${flux.toUpperCase()}</span>
+                </div>
+                <div class="card-corresp">${correspondant}</div>
+                <div class="card-info">${info}</div>
+                ${action ? `<div class="card-action"><strong><i class="fas fa-bolt"></i> Action :</strong> ${action}</div>` : ''}
+                <div class="card-footer">Saisi par : ${r.Cadre||r.cadre||"?"}</div>
+            </div>`;
+        });
+
+        container.innerHTML = html;
+        document.getElementById('last-update').innerHTML = "🟢 MàJ : " + new Date().toLocaleTimeString();
+    }
+
+    // --- 4. EFFET TILT ---
+    document.addEventListener('mousemove', (e) => {
+        const card = document.querySelector('.js-tilt');
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - (rect.left + rect.width / 2);
+        const y = e.clientY - (rect.top + rect.height / 2);
+        card.style.transform = `perspective(1000px) rotateY(${x * 0.002}deg) rotateX(${-y * 0.002}deg)`;
+    });
+
+</script>
+</body>
+</html>

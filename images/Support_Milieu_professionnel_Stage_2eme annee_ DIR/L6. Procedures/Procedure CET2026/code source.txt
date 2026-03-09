@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Manuel de Procédure CET 2026 - DIR NORD</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bleu-dir: #000091;
+            --orange-dir: #ff5e00;
+            --fond-clair: #f4f7f9;
+            --texte-sombre: #2c3e50;
+            --bordure-couleur: #d1d8e0;
+            --alerte-rouge: #ff3333;
+        }
+
+        /* --- Animation de l'écran d'introduction --- */
+        #intro-overlay {
+            position: fixed;
+            inset: 0;
+            background: #0a0a0f;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1s ease-in-out, visibility 1s;
+        }
+
+        .intro-ascii {
+            font-family: monospace;
+            white-space: pre;
+            font-size: 10px;
+            color: var(--orange-dir);
+            text-shadow: 0 0 20px var(--orange-dir);
+            animation: lueur 2s infinite alternate;
+        }
+
+        @keyframes lueur {
+            from { opacity: 0.6; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        #intro-overlay.cache {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        @keyframes pulsationFond {
+            0% { background-color: #ffffff; }
+            50% { background-color: #f2f2f2; }
+            100% { background-color: #ffffff; }
+        }
+
+        body { font-family: 'Poppins', sans-serif; color: var(--texte-sombre); line-height: 1.5; margin: 0; padding: 0; background-color: #525659; overflow-x: hidden; }
+        
+        .page { 
+            width: 21cm; 
+            min-height: 29.7cm; 
+            padding: 1.2cm 1.8cm; 
+            margin: 10px auto; 
+            box-sizing: border-box; 
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            position: relative;
+            animation: pulsationFond 4s infinite ease-in-out;
+            background-color: white;
+        }
+
+        .mega-warning {
+            background-color: #fff0f0;
+            border: 4px solid var(--alerte-rouge);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #b30000;
+        }
+        .mega-warning h2 { margin: 0 0 10px 0; font-weight: 800; font-size: 22px; text-transform: uppercase; }
+        .mega-warning p { margin: 0; font-size: 15px; font-weight: 600; line-height: 1.4; }
+
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-bottom: 3px solid var(--bleu-dir); 
+            padding-bottom: 15px; 
+            margin-bottom: 25px; 
+        }
+
+        .logo-box img { height: 65px; }
+        .header-title { text-align: right; }
+        .header-title h1 { color: var(--bleu-dir); margin: 0; font-size: 20px; font-weight: 800; text-transform: uppercase; }
+        .header-title p { color: var(--orange-dir); margin: 0; font-weight: 700; font-size: 11px; letter-spacing: 1px; }
+
+        .doc-intro { background: rgba(244, 247, 249, 0.7); border-radius: 8px; padding: 20px; margin-bottom: 25px; border-left: 5px solid var(--orange-dir); font-size: 13px; }
+        
+        h3 { color: var(--bleu-dir); text-transform: uppercase; font-size: 14px; border-bottom: 1px solid var(--bordure-couleur); padding-bottom: 5px; margin-top: 30px; display: flex; align-items: center; }
+        h3::before { content: "●"; color: var(--orange-dir); margin-right: 10px; }
+
+        .etape { margin: 15px 0; padding-left: 10px; }
+        .titre-etape { font-weight: 700; color: #000; display: block; margin-bottom: 8px; font-size: 14px; }
+        
+        .conteneur-img { width: 100%; text-align: center; margin: 20px 0; background: rgba(253, 253, 253, 0.5); padding: 10px; border: 1px solid #eee; border-radius: 8px; }
+        .screenshot { max-width: 100%; height: auto; border: 2px solid #ddd; border-radius: 4px; }
+        .legende-img { font-size: 11px; color: #666; font-style: italic; margin-top: 5px; }
+
+        .alert-box { background: rgba(255, 245, 245, 0.8); border: 1px dashed var(--orange-dir); padding: 15px; border-radius: 6px; margin: 15px 0; font-size: 13px; }
+        .alert-box b { color: #d63031; }
+
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 11px; }
+        table th, table td { border: 1px solid #ddd; padding: 10px; text-align: left; vertical-align: top; }
+        table th { background: var(--bleu-dir); color: white; }
+        .solution { color: #007a33; font-weight: 600; }
+
+        .footer-note { position: absolute; bottom: 0.8cm; left: 1.8cm; right: 1.8cm; font-size: 10px; text-align: center; color: #95a5a6; border-top: 1px solid #eee; padding-top: 10px; }
+
+        @media print {
+            #intro-overlay { display: none !important; }
+            body { background: white; }
+            .page { margin: 0; box-shadow: none; border: none; width: 100%; animation: none; background-color: white !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="intro-overlay">
+        <div class="intro-ascii">
+  _______  _        _______  _        _______  _______ 
+ (  ___  )( \      (  ____ \( (    /|(___   /)(  ___  )
+ | (   ) || (      | (    \/|  \  ( |    /  / | (   ) |
+ | (___) || |      | (__    |   \ | |   /  /  | |   | |
+ |  ___  || |      |  __)   | (\ \) |  /  /   | |   | |
+ | (   ) || |      | (      | | \   | /  /    | |   | |
+ | )   ( || (____/\| (____/\| )  \  |/  /____ | (___) |
+ |/     \|(_______/(_______/|/    )_)(_______/(_______)
+                                  
+            Developpé par Alenzo | Secteur Informatique du Siege DIRN...
+        </div>
+    </div>
+
+<div class="page">  
+    <div class="mega-warning">
+        <h2>⚠️ ATTENTION : ACTION REQUISE ⚠️</h2>
+        <p>Il est EXTRÊMEMENT IMPORTANT de lire l'intégralité de ce manuel avant de commencer.<br>
+        La procédure de cette année repose entièrement sur la <b>SIGNATURE NUMÉRIQUE</b> et l'<b>EXPORT PDF</b>.<br>
+        Sans l'exportation du PDF final, votre demande n'existe pas dans le système.</p>
+    </div>
+
+    <header>
+        <div class="logo-box">
+            <img src="https://www.ortl-grandest.fr/wp-content/uploads/2018/11/dir-nord-2.jpg" alt="Logo DIR NORD">
+        </div>
+        <div class="header-title">
+            <h1>Manuel Opérationnel CET 2026</h1>
+            <p>SYSTÈME ALENZO ULTIMATE • DIR NORD</p>
+        </div>
+    </header>
+
+    <div class="doc-intro">
+        <h2>Préambule</h2>
+        <p>Ce manuel guide l'agent et le N+1 dans la saisie des droits CET. L'interface a été simplifiée : plus de bouton de validation complexe en bas de formulaire, tout passe par le bouton d'exportation PDF bleu.</p>
+    </div>
+
+    <h3>CHAPITRE 1 : SÉCURITÉ ET IDENTIFICATION</h3>
+    
+    <div class="etape">
+        <span class="titre-etape">1.1 Déverrouillage du module Agent</span>
+        <p>Le formulaire est protégé. L'agent doit signer dans l'encadré <b>"SIGNATURE AGENT"</b> (haut gauche) pour faire apparaître le contenu.</p>
+        
+        <div class="conteneur-img">
+            <img src="file:///C:/Users/Stagiaire.info-smb/Desktop/localprocess/signature.png" alt="Signature Agent" class="screenshot">
+            <div class="legende-img">Figure 1 : Zone de signature obligatoire pour le déverrouillage.</div>
+        </div>
+    </div>
+
+    <h3>CHAPITRE 2 : CONFORMITÉ DES DONNÉES</h3>
+
+    <div class="etape">
+        <span class="titre-etape">2.1 Remplissage du formulaire</span>
+        <p>Vérifiez vos informations pré-remplies. Complétez les jours à épargner ou à indemniser directement dans l'interface Grist affichée.</p>
+		
+		<div class="conteneur-img">
+            <img src="file:///C:/Users/Stagiaire.info-smb/Desktop/localprocess/remplissage.png" alt="Remplissage Formulaire" class="screenshot">
+            <div class="legende-img">Figure 2 : Saisie des données dans l'interface sécurisée.</div>
+        </div>
+    </div>
+
+    <h3>CHAPITRE 5 : RÉSOLUTION DES PROBLÈMES</h3>
+
+    <div class="etape">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 40%;">Symptôme / Incident</th>
+                    <th style="width: 60%;">Solution à apporter</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>L'écran reste noir avec un cadenas 🔒</b></td>
+                    <td class="solution">Signez dans le cadre "SIGNATURE AGENT".</td>
+                </tr>
+                <tr>
+                    <td><b>Écran rouge "ACCÈS RÉVOQUÉ" ⚠️</b></td>
+                    <td class="solution">Code N+1 erroné 3 fois. Cliquez sur "RÉINITIALISER".</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>CHAPITRE 6 : PROCESSUS FINAL DE VALIDATION</h3>
+
+    <div class="etape">
+        <span class="titre-etape">6.1 Une procédure en trois étapes obligatoires</span>
+        <p><b>ATTENTION :</b> La procédure de cette année est dématérialisée via l'exportation finale.</p>
+        
+        <ol>
+            <li><b>Génération PDF :</b> Vous DEVEZ cliquer sur <b>"GÉNÉRER LE PDF COMPLET"</b> (bouton bleu en bas de page) pour enregistrer vos données et envoyer le document à votre responsable via Courrielleur MEL.</li>
+            <li><b>Certification hiérarchique N+1 :</b> Signature impérative du responsable (directement via son code numérique sur l'interface ou signature manuscrite après impression). </li>
+            <li><b>Validation RH :</b> Une vérification finale de conformité sera effectuée par les services RH après réception de votre export PDF.</li>
+        </ol>
+
+        <div class="alert-box">
+            <b>REMARQUE :</b> Seul le PDF généré après les signatures constitue votre preuve juridique. Sans cet export manuel, votre demande ne pourra pas être traitée par l'administration.
+        </div>
+    </div>
+
+<script>
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const overlay = document.getElementById('intro-overlay');
+            overlay.classList.add('cache');
+        }, 3000); 
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; padding: 15px; background-color: #f8f9fa; position: relative; min-height: 100vh; box-sizing: border-box; }
+    #signature-pad { 
+      border: 1px solid #ced4da; 
+      border-radius: 4px; 
+      width: 100%; 
+      height: 220px; 
+      background: white;
+      cursor: crosshair;
+      touch-action: none;
+    }
+    .controls { margin-top: 15px; display: flex; flex-wrap: wrap; gap: 10px; }
+    button { 
+      padding: 10px 16px; 
+      cursor: pointer; 
+      border: 1px solid transparent; 
+      border-radius: 4px; 
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.15s ease-in-out;
+    }
+    #download { background-color: #28a745; color: white; }
+    #copy { background-color: #007bff; color: white; }
+    #clear { background-color: #ffffff; color: #dc3545; border-color: #dc3545; }
+    button:hover { opacity: 0.9; }
+    .status { font-size: 12px; color: #6c757d; margin-top: 8px; min-height: 1.5em; }
+    
+    .footer {
+      position: absolute;
+      bottom: 10px;
+      right: 15px;
+      font-size: 11px;
+      color: #adb5bd;
+    }
+    .footer a {
+      color: #6c757d;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <canvas id="signature-pad"></canvas>
+  <div id="msg" class="status"></div>
+  
+  <div class="controls">
+    <button id="download">Enregistrer en pièce jointe sur l'ordinateur</button>
+    <button id="copy">Copier dans le presse papier</button>
+    <button id="clear">Réinitialiser la signature</button>
+  </div>
+
+  <div class="footer">
+    made by <a href="https://alenzowauters.github.io" target="_blank">Alenzo</a>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('signature-pad');
+    const msg = document.getElementById('msg');
+    const pad = new SignaturePad(canvas);
+
+    function resize() {
+      const ratio = Math.max(window.devicePixelRatio || 1, 1);
+      canvas.width = canvas.offsetWidth * ratio;
+      canvas.height = canvas.offsetHeight * ratio;
+      canvas.getContext("2d").scale(ratio, ratio);
+      pad.clear(); 
+    }
+
+    window.onresize = resize;
+    resize();
+
+    grist.ready({ requiredAccess: 'none' });
+
+    function info(text) {
+      msg.innerText = text;
+      setTimeout(() => msg.innerText = "", 3000);
+    }
+
+    document.getElementById('download').onclick = () => {
+      if (pad.isEmpty()) return info("Signature vide");
+      const link = document.createElement('a');
+      link.download = `signature-${Date.now()}.png`;
+      link.href = pad.toDataURL();
+      link.click();
+      info("Téléchargement lancé");
+    };
+
+    document.getElementById('copy').onclick = async () => {
+      if (pad.isEmpty()) return info("Signature vide");
+      try {
+        canvas.toBlob(async (blob) => {
+          await navigator.clipboard.write([new ClipboardItem({"image/png": blob})]);
+          info("Copié !");
+        });
+      } catch (e) {
+        info("Erreur : nécessite HTTPS");
+      }
+    };
+
+    document.getElementById('clear').onclick = () => {
+      pad.clear();
+      info("Signature réinitialisée");
+    };
+  </script>
+</body>
+</html>
